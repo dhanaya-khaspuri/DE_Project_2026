@@ -1,0 +1,11 @@
+{
+  "team_number": "T0084",
+  "group_lead": { "name": "Dhanaya Khaspuri", "enrollment_no": "2501010140", "github": "dhanaya-khaspuri" },
+  "members": [
+    { "name": "Mahika Garg", "enrollment_no": "2501010254", "github": "mahikagarg247-tech" },
+    { "name": "Ishan Bansal", "enrollment_no": "2501010717", "github": "bansalishan07" },
+    { "name": "Saumya Madan", "enrollment_no": "2501010414", "github": "itzSaumyamadan" }
+  ],
+  "postgres_version": "(PostgreSQL) 18.6 (Homebrew)",
+  "laptop_used_for_benchmarks": "MacBook Pro, Apple M4"
+}
