@@ -410,7 +410,7 @@ Full list of files per checkpoint, including the AP repo: [`CHECKPOINTS.md`](CHE
 
 ---
 
-## Evaluation (40 marks)
+### Evaluation (40 marks)
 
 These 40 marks are the DE part of the project: **Query Execution (10)** and **Code Optimization (30)**.
 The AP project (20) and your Individual analysis (40) make up the rest of the 100.
