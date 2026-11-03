@@ -24,7 +24,7 @@
 |------|------|----------------|-----------------|
 | Group Lead | Dhanaya Khaspuri| 2501010140| dhanaya-khaspuri|
 | Member 2 | Mahika Garg| 2501010254| mahikagarg247-tech|
-| Member 3 | Ishan Bansal| 2501010717| bansalishan07|
+| Member 3 | Ishan Bansal| 2501010714| bansalishan07|
 | Member 4 | Saumya Madan| 2501010414| saumya-madan|
 
 **Team No.:** __
