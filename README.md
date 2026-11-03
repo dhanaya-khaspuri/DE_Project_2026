@@ -22,12 +22,13 @@
 
 | Role | Name | Enrollment No. | GitHub Username |
 |------|------|----------------|-----------------|
-| Group Lead | | | |
-| Member 2 | | | |
-| Member 3 | | | |
-| Member 4 | | | |
+| Group Lead | Dhanaya Khaspuri| 2501010140| dhanaya-khaspuri|
+| Member 2 | Mahika Garg| 2501010254| mahikagarg247-tech|
+| Member 3 | Ishan Bansal| 2501010717| bansalishan07|
+| Member 4 | Saumya Madan| 2501010414| itzSaumyamadan|
 
-**Team No.:** ____ · **Section:** ____ · **Repository URL:** ____
+**Team No.:** __
+T0084__ · **Section:** __D__ · **Repository URL:** https://github.com/dhanaya-khaspuri/DE_Project_2026.git
 
 ---
 
