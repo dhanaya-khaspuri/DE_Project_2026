@@ -24,7 +24,7 @@ CROSS JOIN LATERAL (
     ORDER BY m.sent_at DESC
     LIMIT 1
 ) last_msg
-WHERE cm.user_id = 965 AND cm.left_at IS NULL
+WHERE cm.user_id = 965 AND cm.left_at IS NULL 
 ORDER BY last_msg.sent_at DESC;
 
 -- @R02
