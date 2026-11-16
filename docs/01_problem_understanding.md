@@ -1,4 +1,4 @@
-# Phase 1: Problem Understanding & Workload Classification
+# Phase 1: Problem Understanding 
 
 **Course:** Database Management Systems · **Team:** T0084 · **System:** WhatsApp Message Store (India Region)  
 **Stakeholders:** Mobile App Users, Group Administrators, Delivery Service, Storage Platform, Trust & Safety, Product/Growth Analytics, Security & Platform Engineering.
