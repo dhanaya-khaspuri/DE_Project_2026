@@ -1,0 +1,75 @@
+=== R04 run 1 ===
+Limit  (cost=5248.39..5248.40 rows=3 width=44) (actual time=34.358..34.359 rows=6.00 loops=1)
+  Buffers: shared hit=2411
+  ->  Sort  (cost=5248.39..5248.40 rows=3 width=44) (actual time=34.357..34.358 rows=6.00 loops=1)
+        Sort Key: m.sent_at DESC
+        Sort Method: quicksort  Memory: 25kB
+        Buffers: shared hit=2411
+        ->  Hash Join  (cost=2210.48..5248.37 rows=3 width=44) (actual time=9.505..34.349 rows=6.00 loops=1)
+              Hash Cond: (m.chat_id = cm.chat_id)
+              Buffers: shared hit=2408
+              ->  Seq Scan on messages m  (cost=0.00..3004.00 rows=12908 width=44) (actual time=0.004..31.468 rows=12935.00 loops=1)
+                    Filter: (body ~~* '%meeting%'::text)
+                    Rows Removed by Filter: 107065
+                    Buffers: shared hit=1504
+              ->  Hash  (cost=2210.43..2210.43 rows=4 width=8) (actual time=2.387..2.387 rows=4.00 loops=1)
+                    Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                    Buffers: shared hit=904
+                    ->  Seq Scan on chat_members cm  (cost=0.00..2210.43 rows=4 width=8) (actual time=0.862..2.383 rows=4.00 loops=1)
+                          Filter: (user_id = 965)
+                          Rows Removed by Filter: 104510
+                          Buffers: shared hit=904
+Planning:
+  Buffers: shared hit=215
+Planning Time: 1.126 ms
+Execution Time: 34.374 ms
+=== R04 run 2 ===
+Limit  (cost=5248.39..5248.40 rows=3 width=44) (actual time=34.941..34.942 rows=6.00 loops=1)
+  Buffers: shared hit=2411
+  ->  Sort  (cost=5248.39..5248.40 rows=3 width=44) (actual time=34.941..34.941 rows=6.00 loops=1)
+        Sort Key: m.sent_at DESC
+        Sort Method: quicksort  Memory: 25kB
+        Buffers: shared hit=2411
+        ->  Hash Join  (cost=2210.48..5248.37 rows=3 width=44) (actual time=9.558..34.933 rows=6.00 loops=1)
+              Hash Cond: (m.chat_id = cm.chat_id)
+              Buffers: shared hit=2408
+              ->  Seq Scan on messages m  (cost=0.00..3004.00 rows=12908 width=44) (actual time=0.005..32.097 rows=12935.00 loops=1)
+                    Filter: (body ~~* '%meeting%'::text)
+                    Rows Removed by Filter: 107065
+                    Buffers: shared hit=1504
+              ->  Hash  (cost=2210.43..2210.43 rows=4 width=8) (actual time=2.329..2.329 rows=4.00 loops=1)
+                    Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                    Buffers: shared hit=904
+                    ->  Seq Scan on chat_members cm  (cost=0.00..2210.43 rows=4 width=8) (actual time=0.833..2.326 rows=4.00 loops=1)
+                          Filter: (user_id = 965)
+                          Rows Removed by Filter: 104510
+                          Buffers: shared hit=904
+Planning:
+  Buffers: shared hit=215
+Planning Time: 0.332 ms
+Execution Time: 34.959 ms
+=== R04 run 3 ===
+Limit  (cost=5248.39..5248.40 rows=3 width=44) (actual time=34.369..34.371 rows=6.00 loops=1)
+  Buffers: shared hit=2411
+  ->  Sort  (cost=5248.39..5248.40 rows=3 width=44) (actual time=34.369..34.370 rows=6.00 loops=1)
+        Sort Key: m.sent_at DESC
+        Sort Method: quicksort  Memory: 25kB
+        Buffers: shared hit=2411
+        ->  Hash Join  (cost=2210.48..5248.37 rows=3 width=44) (actual time=9.797..34.360 rows=6.00 loops=1)
+              Hash Cond: (m.chat_id = cm.chat_id)
+              Buffers: shared hit=2408
+              ->  Seq Scan on messages m  (cost=0.00..3004.00 rows=12908 width=44) (actual time=0.006..31.467 rows=12935.00 loops=1)
+                    Filter: (body ~~* '%meeting%'::text)
+                    Rows Removed by Filter: 107065
+                    Buffers: shared hit=1504
+              ->  Hash  (cost=2210.43..2210.43 rows=4 width=8) (actual time=2.401..2.401 rows=4.00 loops=1)
+                    Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                    Buffers: shared hit=904
+                    ->  Seq Scan on chat_members cm  (cost=0.00..2210.43 rows=4 width=8) (actual time=0.844..2.397 rows=4.00 loops=1)
+                          Filter: (user_id = 965)
+                          Rows Removed by Filter: 104510
+                          Buffers: shared hit=904
+Planning:
+  Buffers: shared hit=215
+Planning Time: 0.409 ms
+Execution Time: 34.393 ms

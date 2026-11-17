@@ -1,0 +1,99 @@
+=== R18 run 1 ===
+Sort  (cost=3782.76..3790.01 rows=2901 width=28) (actual time=14.187..14.316 rows=6097.00 loops=1)
+  Sort Key: u.last_seen_at
+  Sort Method: quicksort  Memory: 479kB
+  Buffers: shared hit=1437
+  ->  Hash Right Semi Join  (cost=1315.06..3615.92 rows=2901 width=28) (actual time=5.134..13.605 rows=6097.00 loops=1)
+        Hash Cond: (cm.user_id = u.user_id)
+        Buffers: shared hit=1434
+        ->  Hash Join  (cost=501.00..2707.61 rows=12791 width=8) (actual time=3.309..8.918 rows=58213.00 loops=1)
+              Hash Cond: (cm.chat_id = c.chat_id)
+              Buffers: shared hit=1080
+              ->  Seq Scan on chat_members cm  (cost=0.00..1949.14 rows=98065 width=16) (actual time=0.003..3.937 rows=98213.00 loops=1)
+                    Filter: (left_at IS NULL)
+                    Rows Removed by Filter: 6301
+                    Buffers: shared hit=904
+              ->  Hash  (cost=463.50..463.50 rows=3000 width=8) (actual time=0.722..0.722 rows=3000.00 loops=1)
+                    Buckets: 4096  Batches: 1  Memory Usage: 150kB
+                    Buffers: shared hit=176
+                    ->  Seq Scan on chats c  (cost=0.00..463.50 rows=3000 width=8) (actual time=0.474..0.609 rows=3000.00 loops=1)
+                          Filter: ((chat_type)::text = 'GROUP'::text)
+                          Rows Removed by Filter: 20000
+                          Buffers: shared hit=176
+        ->  Hash  (cost=729.00..729.00 rows=6805 width=28) (actual time=1.813..1.815 rows=6794.00 loops=1)
+              Buckets: 8192  Batches: 1  Memory Usage: 490kB
+              Buffers: shared hit=354
+              ->  Seq Scan on users u  (cost=0.00..729.00 rows=6805 width=28) (actual time=0.010..1.476 rows=6794.00 loops=1)
+                    Filter: (last_seen_at < '2026-04-01 00:00:00+05:30'::timestamp with time zone)
+                    Rows Removed by Filter: 23206
+                    Buffers: shared hit=354
+Planning:
+  Buffers: shared hit=278
+Planning Time: 0.504 ms
+Execution Time: 14.443 ms
+=== R18 run 2 ===
+Sort  (cost=3782.76..3790.01 rows=2901 width=28) (actual time=14.357..14.542 rows=6097.00 loops=1)
+  Sort Key: u.last_seen_at
+  Sort Method: quicksort  Memory: 479kB
+  Buffers: shared hit=1437
+  ->  Hash Right Semi Join  (cost=1315.06..3615.92 rows=2901 width=28) (actual time=4.856..13.726 rows=6097.00 loops=1)
+        Hash Cond: (cm.user_id = u.user_id)
+        Buffers: shared hit=1434
+        ->  Hash Join  (cost=501.00..2707.61 rows=12791 width=8) (actual time=3.129..8.924 rows=58213.00 loops=1)
+              Hash Cond: (cm.chat_id = c.chat_id)
+              Buffers: shared hit=1080
+              ->  Seq Scan on chat_members cm  (cost=0.00..1949.14 rows=98065 width=16) (actual time=0.003..3.927 rows=98213.00 loops=1)
+                    Filter: (left_at IS NULL)
+                    Rows Removed by Filter: 6301
+                    Buffers: shared hit=904
+              ->  Hash  (cost=463.50..463.50 rows=3000 width=8) (actual time=0.684..0.684 rows=3000.00 loops=1)
+                    Buckets: 4096  Batches: 1  Memory Usage: 150kB
+                    Buffers: shared hit=176
+                    ->  Seq Scan on chats c  (cost=0.00..463.50 rows=3000 width=8) (actual time=0.473..0.591 rows=3000.00 loops=1)
+                          Filter: ((chat_type)::text = 'GROUP'::text)
+                          Rows Removed by Filter: 20000
+                          Buffers: shared hit=176
+        ->  Hash  (cost=729.00..729.00 rows=6805 width=28) (actual time=1.716..1.720 rows=6794.00 loops=1)
+              Buckets: 8192  Batches: 1  Memory Usage: 490kB
+              Buffers: shared hit=354
+              ->  Seq Scan on users u  (cost=0.00..729.00 rows=6805 width=28) (actual time=0.003..1.327 rows=6794.00 loops=1)
+                    Filter: (last_seen_at < '2026-04-01 00:00:00+05:30'::timestamp with time zone)
+                    Rows Removed by Filter: 23206
+                    Buffers: shared hit=354
+Planning:
+  Buffers: shared hit=278
+Planning Time: 0.458 ms
+Execution Time: 14.693 ms
+=== R18 run 3 ===
+Sort  (cost=3782.76..3790.01 rows=2901 width=28) (actual time=14.320..14.455 rows=6097.00 loops=1)
+  Sort Key: u.last_seen_at
+  Sort Method: quicksort  Memory: 479kB
+  Buffers: shared hit=1437
+  ->  Hash Right Semi Join  (cost=1315.06..3615.92 rows=2901 width=28) (actual time=5.079..13.728 rows=6097.00 loops=1)
+        Hash Cond: (cm.user_id = u.user_id)
+        Buffers: shared hit=1434
+        ->  Hash Join  (cost=501.00..2707.61 rows=12791 width=8) (actual time=3.398..9.156 rows=58213.00 loops=1)
+              Hash Cond: (cm.chat_id = c.chat_id)
+              Buffers: shared hit=1080
+              ->  Seq Scan on chat_members cm  (cost=0.00..1949.14 rows=98065 width=16) (actual time=0.003..4.035 rows=98213.00 loops=1)
+                    Filter: (left_at IS NULL)
+                    Rows Removed by Filter: 6301
+                    Buffers: shared hit=904
+              ->  Hash  (cost=463.50..463.50 rows=3000 width=8) (actual time=0.721..0.722 rows=3000.00 loops=1)
+                    Buckets: 4096  Batches: 1  Memory Usage: 150kB
+                    Buffers: shared hit=176
+                    ->  Seq Scan on chats c  (cost=0.00..463.50 rows=3000 width=8) (actual time=0.504..0.621 rows=3000.00 loops=1)
+                          Filter: ((chat_type)::text = 'GROUP'::text)
+                          Rows Removed by Filter: 20000
+                          Buffers: shared hit=176
+        ->  Hash  (cost=729.00..729.00 rows=6805 width=28) (actual time=1.670..1.672 rows=6794.00 loops=1)
+              Buckets: 8192  Batches: 1  Memory Usage: 490kB
+              Buffers: shared hit=354
+              ->  Seq Scan on users u  (cost=0.00..729.00 rows=6805 width=28) (actual time=0.006..1.320 rows=6794.00 loops=1)
+                    Filter: (last_seen_at < '2026-04-01 00:00:00+05:30'::timestamp with time zone)
+                    Rows Removed by Filter: 23206
+                    Buffers: shared hit=354
+Planning:
+  Buffers: shared hit=278
+Planning Time: 0.485 ms
+Execution Time: 14.585 ms

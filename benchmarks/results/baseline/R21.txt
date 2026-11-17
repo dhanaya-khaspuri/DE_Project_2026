@@ -1,0 +1,45 @@
+=== R21 run 1 ===
+Sort  (cost=3904.29..3904.30 rows=6 width=77) (actual time=12.178..12.178 rows=6.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=1507
+  ->  HashAggregate  (cost=3904.00..3904.21 rows=6 width=77) (actual time=12.169..12.172 rows=6.00 loops=1)
+        Group Key: message_type
+        Batches: 1  Memory Usage: 32kB
+        Buffers: shared hit=1504
+        ->  Seq Scan on messages  (cost=0.00..2704.00 rows=120000 width=14) (actual time=0.003..2.989 rows=120000.00 loops=1)
+              Buffers: shared hit=1504
+Planning:
+  Buffers: shared hit=95
+Planning Time: 0.182 ms
+Execution Time: 12.213 ms
+=== R21 run 2 ===
+Sort  (cost=3904.29..3904.30 rows=6 width=77) (actual time=12.241..12.241 rows=6.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=1507
+  ->  HashAggregate  (cost=3904.00..3904.21 rows=6 width=77) (actual time=12.233..12.235 rows=6.00 loops=1)
+        Group Key: message_type
+        Batches: 1  Memory Usage: 32kB
+        Buffers: shared hit=1504
+        ->  Seq Scan on messages  (cost=0.00..2704.00 rows=120000 width=14) (actual time=0.002..2.974 rows=120000.00 loops=1)
+              Buffers: shared hit=1504
+Planning:
+  Buffers: shared hit=95
+Planning Time: 0.151 ms
+Execution Time: 12.271 ms
+=== R21 run 3 ===
+Sort  (cost=3904.29..3904.30 rows=6 width=77) (actual time=12.479..12.480 rows=6.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=1507
+  ->  HashAggregate  (cost=3904.00..3904.21 rows=6 width=77) (actual time=12.471..12.473 rows=6.00 loops=1)
+        Group Key: message_type
+        Batches: 1  Memory Usage: 32kB
+        Buffers: shared hit=1504
+        ->  Seq Scan on messages  (cost=0.00..2704.00 rows=120000 width=14) (actual time=0.003..3.058 rows=120000.00 loops=1)
+              Buffers: shared hit=1504
+Planning:
+  Buffers: shared hit=95
+Planning Time: 0.155 ms
+Execution Time: 12.516 ms

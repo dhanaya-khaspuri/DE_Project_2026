@@ -1,0 +1,33 @@
+=== W03 run 1 ===
+Update on messages  (cost=0.29..8.31 rows=0 width=0) (actual time=0.107..0.107 rows=0.00 loops=1)
+  Buffers: shared hit=42 dirtied=1
+  ->  Index Scan using messages_pkey on messages  (cost=0.29..8.31 rows=1 width=47) (actual time=0.011..0.011 rows=1.00 loops=1)
+        Index Cond: (message_id = 119989)
+        Index Searches: 1
+        Buffers: shared hit=6
+Planning:
+  Buffers: shared hit=64
+Planning Time: 0.130 ms
+Execution Time: 0.150 ms
+=== W03 run 2 ===
+Update on messages  (cost=0.29..8.31 rows=0 width=0) (actual time=0.077..0.077 rows=0.00 loops=1)
+  Buffers: shared hit=41
+  ->  Index Scan using messages_pkey on messages  (cost=0.29..8.31 rows=1 width=47) (actual time=0.012..0.012 rows=1.00 loops=1)
+        Index Cond: (message_id = 119989)
+        Index Searches: 1
+        Buffers: shared hit=6
+Planning:
+  Buffers: shared hit=64
+Planning Time: 0.132 ms
+Execution Time: 0.121 ms
+=== W03 run 3 ===
+Update on messages  (cost=0.29..8.31 rows=0 width=0) (actual time=0.077..0.077 rows=0.00 loops=1)
+  Buffers: shared hit=41
+  ->  Index Scan using messages_pkey on messages  (cost=0.29..8.31 rows=1 width=47) (actual time=0.013..0.013 rows=1.00 loops=1)
+        Index Cond: (message_id = 119989)
+        Index Searches: 1
+        Buffers: shared hit=6
+Planning:
+  Buffers: shared hit=64
+Planning Time: 0.127 ms
+Execution Time: 0.120 ms
