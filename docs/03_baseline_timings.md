@@ -3,7 +3,8 @@
 **Course:** Database Management Systems (DBMS)  
 **Team Number:** T0084  
 **Database:** PostgreSQL 18.6 (Apple M4, macOS)  
-**Measurement Methodology:** 3 consecutive runs per query using `EXPLAIN (ANALYZE, BUFFERS)` executed via `./benchmarks/run_benchmark.sh`. Writes wrapped in transaction blocks (`BEGIN ... ROLLBACK`).
+**Measurement Methodology:** 3 consecutive runs per query using `EXPLAIN (ANALYZE, BUFFERS)` executed via `./benchmarks/run_benchmark.sh`. Writes wrapped in transaction blocks (`BEGIN ... ROLLBACK`).  
+**Dataset Scale:** `messages` (120,000 rows), `message_receipts` (501,590 rows), `media` (27,634 rows), `devices` (42,000 rows), `chats` / groups (3,000 rows).
 
 ---
 
@@ -29,7 +30,7 @@
 | **R16:** Message info screen: who has read message 119989 and when | READ | 0.080 | 0.061 | 0.071 | 0.071 |
 | **R17:** Product analytics: average minutes from sending to reading, per message type (June 2026) | READ | 15.900 | 16.413 | 15.676 | 15.996 |
 | **R18:** Clean-up: users not seen since April 2026 who are still in at least one group | READ | 14.443 | 14.693 | 14.585 | 14.574 |
-| **R19:** Group health report: for every group, the last message time and messages in June 2026 | READ | 15780.541 | 16107.386 | 15566.144 | **15,818.024** |
+| **R19:** Group health report: for every group, the last message time and messages in June 2026 | READ | 15780.541 | 16107.386 | 15566.144 | **15818.024** |
 | **R20:** Capacity planning: messages per hour of the day, by message type | READ | 44.427 | 44.017 | 43.928 | 44.124 |
 | **R21:** Product analytics: share of messages edited or deleted, per message type | READ | 12.213 | 12.271 | 12.516 | 12.333 |
 | **R22:** Trust & safety console: all messages, newest first, page 4,001 (25 per page) | READ | 8.800 | 8.727 | 8.679 | 8.735 |
@@ -41,7 +42,7 @@
 | **W03:** "Delete for everyone" on message 119989 | WRITE | 0.150 | 0.121 | 0.120 | 0.130 |
 | **W04:** Broadcast: create delivery receipts for 5,000 recipients of a business announcement | WRITE | 26.371 | 27.530 | 26.511 | 26.804 |
 | **W05:** User 965 leaves group 20898 | WRITE | 0.192 | 0.149 | 0.141 | 0.161 |
-| **Total (sum of all 30)** | | **16,059.646** | **16,373.509** | **15,829.090** | **16,087.415** |
+| **Total (sum of all 30)** | | **16059.647** | **16373.508** | **15829.091** | **16087.415** |
 
 ---
 
@@ -67,7 +68,7 @@
 | **R16** | `Index Scan using message_receipts_pkey` | **Fast (0.07 ms):** Leading column `message_id` in PK `(message_id, user_id)` satisfies lookup directly. |
 | **R17** | `Seq Scan on message_receipts`, `Seq Scan on messages` | **Slow (16.00 ms):** Full hash join of 501,590 receipts against messages within June 2026 date bounds. |
 | **R18** | `Seq Scan on chat_members`, `Seq Scan on chats`, `Seq Scan on users` | **Slow (14.57 ms):** Triple full table scan to evaluate correlated `EXISTS` subquery. |
-| **R19** | `Seq Scan on chats`, `Seq Scan on messages` | **Catastrophically Slow (15,818.02 ms / ~15.8 sec):** For all 3,000 group chats, it runs **two full sequential scans** across 120,000 messages (6,000 table scans total!). |
+| **R19** | `Seq Scan on chats`, `Seq Scan on messages` | **Catastrophically Slow (15818.02 ms / ~15.8 sec):** For all 3,000 group chats, it runs **two full sequential scans** across 120,000 messages (6,000 table scans total!). |
 | **R20** | `Seq Scan on messages` | **Slow (44.12 ms):** Computes `EXTRACT(HOUR FROM sent_at)` across 120,000 rows followed by high-cardinality grouping. |
 | **R21** | `Seq Scan on messages` | **Slow (12.33 ms):** Reads all rows to calculate conditional filters `FILTER (WHERE edited_at IS NOT NULL)`. |
 | **R22** | `Index Scan using messages_pkey on messages` | **Slow (8.74 ms):** Uses PK index backward but must traverse and discard 100,000 index tuples due to `OFFSET 100000`. |
@@ -79,4 +80,3 @@
 | **W03** | `Index Scan using messages_pkey` | **Fast (0.13 ms):** Direct PK update of single record. |
 | **W04** | `(no scan)` | **Slow (26.80 ms):** Bulk insertion of 5,000 rows into `message_receipts` with conflict checking. |
 | **W05** | `Index Scan using chat_members_pkey` | **Fast (0.16 ms):** Target row found directly via composite PK index. |
-
