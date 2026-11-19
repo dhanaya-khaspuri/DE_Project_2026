@@ -1,0 +1,57 @@
+=== R12 run 1 ===
+Sort  (cost=571.68..576.62 rows=1977 width=20) (actual time=1.777..1.778 rows=3.00 loops=1)
+  Sort Key: (count(*)) DESC, sender_id
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=4 read=24
+  ->  HashAggregate  (cost=379.41..463.45 rows=1977 width=20) (actual time=1.647..1.771 rows=3.00 loops=1)
+        Group Key: sender_id, ((sent_at AT TIME ZONE 'Asia/Kolkata'::text))::date
+        Filter: (count(*) >= 2)
+        Batches: 1  Memory Usage: 665kB
+        Rows Removed by Filter: 5992
+        Buffers: shared hit=1 read=24
+        ->  Index Only Scan using idx_messages_forwarded_sender_sent on messages  (cost=0.28..334.92 rows=5932 width=12) (actual time=0.049..1.177 rows=5998.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1 read=24
+Planning:
+  Buffers: shared hit=234
+Planning Time: 0.361 ms
+Execution Time: 1.828 ms
+=== R12 run 2 ===
+Sort  (cost=571.68..576.62 rows=1977 width=20) (actual time=1.745..1.746 rows=3.00 loops=1)
+  Sort Key: (count(*)) DESC, sender_id
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=28
+  ->  HashAggregate  (cost=379.41..463.45 rows=1977 width=20) (actual time=1.619..1.739 rows=3.00 loops=1)
+        Group Key: sender_id, ((sent_at AT TIME ZONE 'Asia/Kolkata'::text))::date
+        Filter: (count(*) >= 2)
+        Batches: 1  Memory Usage: 665kB
+        Rows Removed by Filter: 5992
+        Buffers: shared hit=25
+        ->  Index Only Scan using idx_messages_forwarded_sender_sent on messages  (cost=0.28..334.92 rows=5932 width=12) (actual time=0.037..1.183 rows=5998.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=25
+Planning:
+  Buffers: shared hit=234
+Planning Time: 0.376 ms
+Execution Time: 1.791 ms
+=== R12 run 3 ===
+Sort  (cost=571.68..576.62 rows=1977 width=20) (actual time=1.800..1.800 rows=3.00 loops=1)
+  Sort Key: (count(*)) DESC, sender_id
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=28
+  ->  HashAggregate  (cost=379.41..463.45 rows=1977 width=20) (actual time=1.680..1.794 rows=3.00 loops=1)
+        Group Key: sender_id, ((sent_at AT TIME ZONE 'Asia/Kolkata'::text))::date
+        Filter: (count(*) >= 2)
+        Batches: 1  Memory Usage: 665kB
+        Rows Removed by Filter: 5992
+        Buffers: shared hit=25
+        ->  Index Only Scan using idx_messages_forwarded_sender_sent on messages  (cost=0.28..334.92 rows=5932 width=12) (actual time=0.035..1.240 rows=5998.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=25
+Planning:
+  Buffers: shared hit=234
+Planning Time: 0.331 ms
+Execution Time: 1.846 ms

@@ -1,0 +1,75 @@
+=== R11 run 1 ===
+Sort  (cost=2257.85..2257.86 rows=2 width=30) (actual time=2.383..2.383 rows=1.00 loops=1)
+  Sort Key: c.started_at DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=916 read=4
+  ->  Nested Loop  (cost=4.30..2257.84 rows=2 width=30) (actual time=0.813..2.371 rows=1.00 loops=1)
+        Buffers: shared hit=913 read=4
+        ->  Seq Scan on chat_members cm  (cost=0.00..2210.43 rows=4 width=8) (actual time=0.803..2.344 rows=4.00 loops=1)
+              Filter: (user_id = 965)
+              Rows Removed by Filter: 104510
+              Buffers: shared hit=904
+        ->  Bitmap Heap Scan on calls c  (cost=4.30..11.84 rows=1 width=38) (actual time=0.006..0.006 rows=0.25 loops=4)
+              Recheck Cond: (cm.chat_id = chat_id)
+              Filter: ((caller_id <> 965) AND (started_at >= '2025-01-01 00:00:00+05:30'::timestamp with time zone) AND ((status)::text = 'MISSED'::text))
+              Rows Removed by Filter: 1
+              Heap Blocks: exact=5
+              Buffers: shared hit=9 read=4
+              ->  Bitmap Index Scan on idx_calls_chat_id  (cost=0.00..4.30 rows=2 width=0) (actual time=0.003..0.003 rows=1.25 loops=4)
+                    Index Cond: (chat_id = cm.chat_id)
+                    Index Searches: 4
+                    Buffers: shared hit=4 read=4
+Planning:
+  Buffers: shared hit=320 read=5
+Planning Time: 0.595 ms
+Execution Time: 2.405 ms
+=== R11 run 2 ===
+Sort  (cost=2257.85..2257.86 rows=2 width=30) (actual time=2.305..2.306 rows=1.00 loops=1)
+  Sort Key: c.started_at DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=920
+  ->  Nested Loop  (cost=4.30..2257.84 rows=2 width=30) (actual time=0.792..2.294 rows=1.00 loops=1)
+        Buffers: shared hit=917
+        ->  Seq Scan on chat_members cm  (cost=0.00..2210.43 rows=4 width=8) (actual time=0.785..2.275 rows=4.00 loops=1)
+              Filter: (user_id = 965)
+              Rows Removed by Filter: 104510
+              Buffers: shared hit=904
+        ->  Bitmap Heap Scan on calls c  (cost=4.30..11.84 rows=1 width=38) (actual time=0.004..0.004 rows=0.25 loops=4)
+              Recheck Cond: (cm.chat_id = chat_id)
+              Filter: ((caller_id <> 965) AND (started_at >= '2025-01-01 00:00:00+05:30'::timestamp with time zone) AND ((status)::text = 'MISSED'::text))
+              Rows Removed by Filter: 1
+              Heap Blocks: exact=5
+              Buffers: shared hit=13
+              ->  Bitmap Index Scan on idx_calls_chat_id  (cost=0.00..4.30 rows=2 width=0) (actual time=0.002..0.002 rows=1.25 loops=4)
+                    Index Cond: (chat_id = cm.chat_id)
+                    Index Searches: 4
+                    Buffers: shared hit=8
+Planning:
+  Buffers: shared hit=319
+Planning Time: 0.476 ms
+Execution Time: 2.326 ms
+=== R11 run 3 ===
+Sort  (cost=2257.85..2257.86 rows=2 width=30) (actual time=2.343..2.344 rows=1.00 loops=1)
+  Sort Key: c.started_at DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=920
+  ->  Nested Loop  (cost=4.30..2257.84 rows=2 width=30) (actual time=0.816..2.332 rows=1.00 loops=1)
+        Buffers: shared hit=917
+        ->  Seq Scan on chat_members cm  (cost=0.00..2210.43 rows=4 width=8) (actual time=0.809..2.314 rows=4.00 loops=1)
+              Filter: (user_id = 965)
+              Rows Removed by Filter: 104510
+              Buffers: shared hit=904
+        ->  Bitmap Heap Scan on calls c  (cost=4.30..11.84 rows=1 width=38) (actual time=0.004..0.004 rows=0.25 loops=4)
+              Recheck Cond: (cm.chat_id = chat_id)
+              Filter: ((caller_id <> 965) AND (started_at >= '2025-01-01 00:00:00+05:30'::timestamp with time zone) AND ((status)::text = 'MISSED'::text))
+              Rows Removed by Filter: 1
+              Heap Blocks: exact=5
+              Buffers: shared hit=13
+              ->  Bitmap Index Scan on idx_calls_chat_id  (cost=0.00..4.30 rows=2 width=0) (actual time=0.002..0.002 rows=1.25 loops=4)
+                    Index Cond: (chat_id = cm.chat_id)
+                    Index Searches: 4
+                    Buffers: shared hit=8
+Planning:
+  Buffers: shared hit=319
+Planning Time: 0.487 ms
+Execution Time: 2.365 ms

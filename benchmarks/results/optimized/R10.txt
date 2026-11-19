@@ -1,0 +1,48 @@
+=== R10 run 1 ===
+GroupAggregate  (cost=729.64..891.62 rows=6479 width=20) (actual time=2.215..2.520 rows=30.00 loops=1)
+  Group Key: (((sent_at AT TIME ZONE 'Asia/Kolkata'::text))::date)
+  Buffers: shared hit=92 read=18
+  ->  Sort  (cost=729.64..745.84 rows=6479 width=12) (actual time=2.200..2.309 rows=6593.00 loops=1)
+        Sort Key: (((sent_at AT TIME ZONE 'Asia/Kolkata'::text))::date), sender_id
+        Sort Method: quicksort  Memory: 399kB
+        Buffers: shared hit=92 read=18
+        ->  Index Scan using idx_messages_sent_at on messages  (cost=0.42..319.47 rows=6479 width=12) (actual time=0.068..1.486 rows=6593.00 loops=1)
+              Index Cond: ((sent_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (sent_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+              Index Searches: 1
+              Buffers: shared hit=86 read=18
+Planning:
+  Buffers: shared hit=250
+Planning Time: 0.402 ms
+Execution Time: 2.553 ms
+=== R10 run 2 ===
+GroupAggregate  (cost=729.64..891.62 rows=6479 width=20) (actual time=2.041..2.351 rows=30.00 loops=1)
+  Group Key: (((sent_at AT TIME ZONE 'Asia/Kolkata'::text))::date)
+  Buffers: shared hit=110
+  ->  Sort  (cost=729.64..745.84 rows=6479 width=12) (actual time=2.027..2.141 rows=6593.00 loops=1)
+        Sort Key: (((sent_at AT TIME ZONE 'Asia/Kolkata'::text))::date), sender_id
+        Sort Method: quicksort  Memory: 399kB
+        Buffers: shared hit=110
+        ->  Index Scan using idx_messages_sent_at on messages  (cost=0.42..319.47 rows=6479 width=12) (actual time=0.013..1.333 rows=6593.00 loops=1)
+              Index Cond: ((sent_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (sent_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+              Index Searches: 1
+              Buffers: shared hit=104
+Planning:
+  Buffers: shared hit=250
+Planning Time: 0.376 ms
+Execution Time: 2.386 ms
+=== R10 run 3 ===
+GroupAggregate  (cost=729.64..891.62 rows=6479 width=20) (actual time=2.027..2.330 rows=30.00 loops=1)
+  Group Key: (((sent_at AT TIME ZONE 'Asia/Kolkata'::text))::date)
+  Buffers: shared hit=110
+  ->  Sort  (cost=729.64..745.84 rows=6479 width=12) (actual time=2.013..2.120 rows=6593.00 loops=1)
+        Sort Key: (((sent_at AT TIME ZONE 'Asia/Kolkata'::text))::date), sender_id
+        Sort Method: quicksort  Memory: 399kB
+        Buffers: shared hit=110
+        ->  Index Scan using idx_messages_sent_at on messages  (cost=0.42..319.47 rows=6479 width=12) (actual time=0.019..1.336 rows=6593.00 loops=1)
+              Index Cond: ((sent_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (sent_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+              Index Searches: 1
+              Buffers: shared hit=104
+Planning:
+  Buffers: shared hit=250
+Planning Time: 0.361 ms
+Execution Time: 2.361 ms

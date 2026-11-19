@@ -1,0 +1,48 @@
+=== R13 run 1 ===
+Nested Loop Anti Join  (cost=0.57..30.94 rows=2 width=44) (actual time=0.028..0.062 rows=7.00 loops=1)
+  Buffers: shared hit=22 read=11
+  ->  Index Scan using idx_messages_chat_body_like on messages m  (cost=0.29..12.32 rows=2 width=44) (actual time=0.021..0.035 rows=9.00 loops=1)
+        Index Cond: (chat_id = 20501)
+        Index Searches: 1
+        Buffers: shared hit=12 read=2
+  ->  Index Only Scan using idx_messages_reply_to on messages r  (cost=0.29..6.30 rows=1 width=8) (actual time=0.003..0.003 rows=0.22 loops=9)
+        Index Cond: (reply_to_message_id = m.message_id)
+        Heap Fetches: 0
+        Index Searches: 9
+        Buffers: shared hit=10 read=9
+Planning:
+  Buffers: shared hit=318
+Planning Time: 0.445 ms
+Execution Time: 0.083 ms
+=== R13 run 2 ===
+Nested Loop Anti Join  (cost=0.57..30.94 rows=2 width=44) (actual time=0.013..0.038 rows=7.00 loops=1)
+  Buffers: shared hit=33
+  ->  Index Scan using idx_messages_chat_body_like on messages m  (cost=0.29..12.32 rows=2 width=44) (actual time=0.009..0.022 rows=9.00 loops=1)
+        Index Cond: (chat_id = 20501)
+        Index Searches: 1
+        Buffers: shared hit=14
+  ->  Index Only Scan using idx_messages_reply_to on messages r  (cost=0.29..6.30 rows=1 width=8) (actual time=0.002..0.002 rows=0.22 loops=9)
+        Index Cond: (reply_to_message_id = m.message_id)
+        Heap Fetches: 0
+        Index Searches: 9
+        Buffers: shared hit=19
+Planning:
+  Buffers: shared hit=318
+Planning Time: 0.507 ms
+Execution Time: 0.060 ms
+=== R13 run 3 ===
+Nested Loop Anti Join  (cost=0.57..30.94 rows=2 width=44) (actual time=0.013..0.037 rows=7.00 loops=1)
+  Buffers: shared hit=33
+  ->  Index Scan using idx_messages_chat_body_like on messages m  (cost=0.29..12.32 rows=2 width=44) (actual time=0.009..0.021 rows=9.00 loops=1)
+        Index Cond: (chat_id = 20501)
+        Index Searches: 1
+        Buffers: shared hit=14
+  ->  Index Only Scan using idx_messages_reply_to on messages r  (cost=0.29..6.30 rows=1 width=8) (actual time=0.001..0.001 rows=0.22 loops=9)
+        Index Cond: (reply_to_message_id = m.message_id)
+        Heap Fetches: 0
+        Index Searches: 9
+        Buffers: shared hit=19
+Planning:
+  Buffers: shared hit=318
+Planning Time: 0.432 ms
+Execution Time: 0.058 ms
