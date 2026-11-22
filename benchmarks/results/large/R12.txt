@@ -1,0 +1,8 @@
+=== R12 run 1 ===
+Execution Time: 1.15 ms
+
+=== R12 run 2 ===
+Execution Time: 1.181 ms
+
+=== R12 run 3 ===
+Execution Time: 1.277 ms

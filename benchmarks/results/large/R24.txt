@@ -1,0 +1,8 @@
+=== R24 run 1 ===
+Execution Time: 13.866 ms
+
+=== R24 run 2 ===
+Execution Time: 14.026 ms
+
+=== R24 run 3 ===
+Execution Time: 14.507 ms

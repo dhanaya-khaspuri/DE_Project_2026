@@ -1,0 +1,8 @@
+=== R08 run 1 ===
+Execution Time: 4.074 ms
+
+=== R08 run 2 ===
+Execution Time: 4.133 ms
+
+=== R08 run 3 ===
+Execution Time: 4.372 ms

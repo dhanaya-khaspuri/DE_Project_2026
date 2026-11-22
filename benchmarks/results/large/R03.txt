@@ -1,0 +1,8 @@
+=== R03 run 1 ===
+Execution Time: 0.942 ms
+
+=== R03 run 2 ===
+Execution Time: 0.957 ms
+
+=== R03 run 3 ===
+Execution Time: 1.015 ms

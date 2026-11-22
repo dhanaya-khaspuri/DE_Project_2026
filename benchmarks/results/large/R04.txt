@@ -1,0 +1,8 @@
+=== R04 run 1 ===
+Execution Time: 22.476 ms
+
+=== R04 run 2 ===
+Execution Time: 22.555 ms
+
+=== R04 run 3 ===
+Execution Time: 22.851 ms

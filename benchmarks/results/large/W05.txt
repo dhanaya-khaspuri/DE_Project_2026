@@ -1,0 +1,8 @@
+=== W05 run 1 ===
+Execution Time: 0.155 ms
+
+=== W05 run 2 ===
+Execution Time: 0.164 ms
+
+=== W05 run 3 ===
+Execution Time: 0.211 ms

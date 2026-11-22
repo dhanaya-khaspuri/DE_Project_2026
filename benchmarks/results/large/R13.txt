@@ -1,0 +1,8 @@
+=== R13 run 1 ===
+Execution Time: 2.276 ms
+
+=== R13 run 2 ===
+Execution Time: 2.298 ms
+
+=== R13 run 3 ===
+Execution Time: 2.375 ms

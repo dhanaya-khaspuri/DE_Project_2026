@@ -1,0 +1,8 @@
+=== R09 run 1 ===
+Execution Time: 17.527 ms
+
+=== R09 run 2 ===
+Execution Time: 17.727 ms
+
+=== R09 run 3 ===
+Execution Time: 18.309 ms

@@ -1,0 +1,8 @@
+=== R14 run 1 ===
+Execution Time: 5.666 ms
+
+=== R14 run 2 ===
+Execution Time: 5.734 ms
+
+=== R14 run 3 ===
+Execution Time: 5.936 ms

@@ -1,0 +1,8 @@
+=== R21 run 1 ===
+Execution Time: 178.992 ms
+
+=== R21 run 2 ===
+Execution Time: 180.198 ms
+
+=== R21 run 3 ===
+Execution Time: 185.562 ms

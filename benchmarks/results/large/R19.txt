@@ -1,0 +1,8 @@
+=== R19 run 1 ===
+Execution Time: 40.181 ms
+
+=== R19 run 2 ===
+Execution Time: 40.542 ms
+
+=== R19 run 3 ===
+Execution Time: 42.095 ms

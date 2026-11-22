@@ -1,0 +1,8 @@
+=== R22 run 1 ===
+Execution Time: 0.269 ms
+
+=== R22 run 2 ===
+Execution Time: 0.272 ms
+
+=== R22 run 3 ===
+Execution Time: 0.283 ms
